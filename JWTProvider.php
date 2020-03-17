@@ -60,6 +60,11 @@ class JWTProvider
     /**
      * Builds request JWT.
      *
+     * @param string $formattableTimeString
+     * @param string $issuer
+     * @param string $subject
+     * @param string $audience
+     * @param string $services
      * @return string
      */
     public function buildJWTPayload($formattableTimeString, $issuer, $subject, $audience, $services)
@@ -89,7 +94,7 @@ class JWTProvider
 function psvm()
 {
 
-    $shortopts = ""
+    $cl_options = ""
         . "i:"       // Client Id
         . "s:"       // Client Secret
         . "k:"       // Key File path
@@ -99,7 +104,7 @@ function psvm()
         . "c:"       // services
         . "e::";     // expires
 
-    $longopts = array(
+    $longopts = array(          //just for reference, not used actually
         "client-id:",
         "client-secret:",
         "key-file:",
@@ -111,18 +116,7 @@ function psvm()
     );
 
     $show_usage = false;
-    $cmdLineOpts = getopt($shortopts);
-//    var_dump($cmdLineOpts);
-//exit(1);
-    $client_id = "";
-    $client_secret = "";
-    $key_file = "";
-    $exp_time = "";
-    $issuer = "";
-    $subject = "";
-    $audience = "";
-    $services = "";
-    $private_key = "";
+    $cmdLineOpts = getopt($cl_options);
 
     if (isset($cmdLineOpts["i"])) {
 
